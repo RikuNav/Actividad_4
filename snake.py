@@ -9,7 +9,8 @@ Exercises
 """
 
 from random import randrange
-from turtle import Turtle
+from turtle import update, clear, ontimer, \
+    setup, hideturtle, tracer, listen, onkey, done
 
 from freegames import square, vector
 
@@ -36,7 +37,7 @@ def move():
 
     if not inside(head) or head in snake:
         square(head.x, head.y, 9, 'red')
-        Turtle.update()
+        update()
         return
 
     snake.append(head)
@@ -48,23 +49,23 @@ def move():
     else:
         snake.pop(0)
 
-    Turtle.clear()
+    clear()
 
     for body in snake:
         square(body.x, body.y, 9, 'black')
 
     square(food.x, food.y, 9, 'green')
-    Turtle.update()
-    Turtle.ontimer(move, 100)
+    update()
+    ontimer(move, 100)
 
 
-Turtle.setup(420, 420, 370, 0)
-Turtle.hideturtle()
-Turtle.tracer(False)
-Turtle.listen()
-Turtle.onkey(lambda: change(10, 0), 'Right')
-Turtle.onkey(lambda: change(-10, 0), 'Left')
-Turtle.onkey(lambda: change(0, 10), 'Up')
-Turtle.onkey(lambda: change(0, -10), 'Down')
+setup(420, 420, 370, 0)
+hideturtle()
+tracer(False)
+listen()
+onkey(lambda: change(10, 0), 'Right')
+onkey(lambda: change(-10, 0), 'Left')
+onkey(lambda: change(0, 10), 'Up')
+onkey(lambda: change(0, -10), 'Down')
 move()
-Turtle.done()
+done()
